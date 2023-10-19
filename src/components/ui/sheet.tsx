@@ -16,9 +16,11 @@ const SheetClose = SheetPrimitive.Close
 const SheetPortal = ({
   className,
   ...props
-}: SheetPrimitive.DialogPortalProps) => (
-  <SheetPrimitive.Portal className={cn(className)} {...props} />
-)
+}: SheetPrimitive.DialogPortalProps) => {
+    return (
+        <SheetPrimitive.Portal className={cn(className)} {...props} />
+    );
+}
 SheetPortal.displayName = SheetPrimitive.Portal.displayName
 
 const SheetOverlay = React.forwardRef<
