@@ -20,7 +20,7 @@ model Product {
   categoryId         String
   name               String
   slug               String
-  imageUrls          String
+  imageUrls          String[]
   description        String
   basePrice          Decimal  @db.Decimal(8, 2)
   discountPercentage Int      @default(0)
