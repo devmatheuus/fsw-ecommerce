@@ -1,9 +1,9 @@
 import React from "react";
-import { Product } from "@prisma/client";
 import Image from "next/image";
 import { ProductWithTotalPrice } from "@/helpers/product";
 import { Badge } from "./badge";
 import { ArrowDownIcon } from "lucide-react";
+import numberFormatter from "@/helpers/numberFormatter";
 
 type ProductItemProps = {
   product: ProductWithTotalPrice;
@@ -37,18 +37,18 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           {product.discountPercentage > 0 && (
             <>
               <p className="text-sm font-semibold">
-                R$ {product.totalPrice.toFixed(2)}
+                R$ {numberFormatter(product.totalPrice)}
               </p>
 
               <p className="text-xs line-through opacity-75">
-                R$ {product.basePrice.toFixed(2)}
+                R$ {numberFormatter(+product.basePrice)}
               </p>
             </>
           )}
 
           {product.discountPercentage === 0 && (
             <p className="text-sm font-semibold">
-              R$ {product.basePrice.toFixed(2)}
+              R$ {numberFormatter(+product.basePrice)}
             </p>
           )}
         </div>
