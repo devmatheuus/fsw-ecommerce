@@ -9,7 +9,10 @@ const computedProductTotalPrice = (product: Product): ProductWithTotalPrice => {
   if (product.discountPercentage === 0) {
     totalPrice = Number(product.basePrice);
   } else {
-    totalPrice = +product.basePrice * (product.discountPercentage / 100);
+    const totalDiscount =
+      +product.basePrice * (product.discountPercentage / 100);
+
+    totalPrice = +product.basePrice - totalDiscount;
   }
 
   return { ...product, totalPrice };
