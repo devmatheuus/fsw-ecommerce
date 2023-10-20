@@ -1,10 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { ProductWithTotalPrice } from "@/helpers/product";
-import { Badge } from "./badge";
-import { ArrowDownIcon } from "lucide-react";
 import numberFormatter from "@/helpers/numberFormatter";
 import Link from "next/link";
+import DiscountBadge from "./DiscountBadge";
 
 type ProductItemProps = {
   product: ProductWithTotalPrice;
@@ -15,9 +14,9 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
       <div className="flex flex-col gap-4">
         <div className="w-min-[170px] relative flex h-[170px] w-full items-center justify-center rounded-lg bg-accent">
           {product.discountPercentage > 0 && (
-            <Badge className="absolute left-3 top-3 px-2 py-[2px]">
-              <ArrowDownIcon size={14} /> {product.discountPercentage}%
-            </Badge>
+            <DiscountBadge className="absolute left-3 top-3">
+              {product.discountPercentage}
+            </DiscountBadge>
           )}
 
           <Image

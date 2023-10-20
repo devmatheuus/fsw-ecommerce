@@ -3,14 +3,9 @@
 import React, { useState } from "react";
 import { ProductWithTotalPrice } from "@/helpers/product";
 import numberFormatter from "@/helpers/numberFormatter";
-import { Badge } from "@/components/ui/badge";
-import {
-  ArrowDownIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  TruckIcon,
-} from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon, TruckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import DiscountBadge from "@/components/ui/DiscountBadge";
 
 type ProductInfoProps = {
   product: Pick<
@@ -40,9 +35,9 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
         <h1 className="text-xl font-bold">{numberFormatter(totalPrice)}</h1>
 
         {discountPercentage > 0 && (
-          <Badge className="px-2 py-[2px]">
-            <ArrowDownIcon size={14} /> <span>{discountPercentage}%</span>
-          </Badge>
+          <DiscountBadge>
+            <span>{discountPercentage}</span>
+          </DiscountBadge>
         )}
       </div>
       {discountPercentage > 0 && (
