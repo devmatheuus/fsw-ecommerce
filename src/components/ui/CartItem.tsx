@@ -6,8 +6,11 @@ import { Button } from "./button";
 import { ArrowLeftIcon, ArrowRightIcon, TrashIcon } from "lucide-react";
 
 const CartItem: React.FC<CartProduct> = (product) => {
-  const { decreaseProductQuantity, increaseProductQuantity } =
-    useContext(CartContext);
+  const {
+    decreaseProductQuantity,
+    increaseProductQuantity,
+    removeProductFromCart,
+  } = useContext(CartContext);
 
   const handleDecreaseProductQuantity = () => {
     decreaseProductQuantity(product.id);
@@ -15,6 +18,10 @@ const CartItem: React.FC<CartProduct> = (product) => {
 
   const handleIncreaseProductQuantity = () => {
     increaseProductQuantity(product.id);
+  };
+
+  const handleRemoveProductFromCart = () => {
+    removeProductFromCart(product.id);
   };
 
   return (
@@ -68,7 +75,11 @@ const CartItem: React.FC<CartProduct> = (product) => {
           </div>
         </div>
       </div>
-      <Button size="icon" variant="outline">
+      <Button
+        size="icon"
+        variant="outline"
+        onClick={handleRemoveProductFromCart}
+      >
         <TrashIcon size={16} />
       </Button>
     </div>
