@@ -41,7 +41,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
 
         {discountPercentage > 0 && (
           <Badge className="px-2 py-[2px]">
-            <ArrowDownIcon size={14} /> <span>{discountPercentage}</span>
+            <ArrowDownIcon size={14} /> <span>{discountPercentage}%</span>
           </Badge>
         )}
       </div>
