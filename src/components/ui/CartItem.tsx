@@ -6,10 +6,15 @@ import { Button } from "./button";
 import { ArrowLeftIcon, ArrowRightIcon, TrashIcon } from "lucide-react";
 
 const CartItem: React.FC<CartProduct> = (product) => {
-  const { decreaseProductQuantity } = useContext(CartContext);
+  const { decreaseProductQuantity, increaseProductQuantity } =
+    useContext(CartContext);
 
   const handleDecreaseProductQuantity = () => {
     decreaseProductQuantity(product.id);
+  };
+
+  const handleIncreaseProductQuantity = () => {
+    increaseProductQuantity(product.id);
   };
 
   return (
@@ -51,12 +56,12 @@ const CartItem: React.FC<CartProduct> = (product) => {
             >
               <ArrowLeftIcon size={16} />
             </Button>
-            <span>{product.quantity}</span>
+            <span className="text-xs">{product.quantity}</span>
             <Button
               size="icon"
               className="h-8 w-8"
               variant="outline"
-              //   onClick={handleIncreaseQuantity}
+              onClick={handleIncreaseProductQuantity}
             >
               <ArrowRightIcon size={16} />
             </Button>
