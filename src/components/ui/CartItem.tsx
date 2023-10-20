@@ -1,11 +1,17 @@
 import numberFormatter from "@/helpers/numberFormatter";
-import { CartProduct } from "@/providers/cart";
+import { CartContext, CartProduct } from "@/providers/cart";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Button } from "./button";
 import { ArrowLeftIcon, ArrowRightIcon, TrashIcon } from "lucide-react";
 
 const CartItem: React.FC<CartProduct> = (product) => {
+  const { decreaseProductQuantity } = useContext(CartContext);
+
+  const handleDecreaseProductQuantity = () => {
+    decreaseProductQuantity(product.id);
+  };
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4">
@@ -41,8 +47,7 @@ const CartItem: React.FC<CartProduct> = (product) => {
               size="icon"
               className="h-8 w-8"
               variant="outline"
-              //   onClick={handleDecreaseQuantity}
-              disabled={product.quantity === 1}
+              onClick={handleDecreaseProductQuantity}
             >
               <ArrowLeftIcon size={16} />
             </Button>

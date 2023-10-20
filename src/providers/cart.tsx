@@ -11,6 +11,7 @@ type CartContextType = {
   cartBasePrice: number;
   cartTotalDiscount: number;
   addProductToCart: (product: CartProduct) => void;
+  decreaseProductQuantity: (productId: string) => void;
 };
 
 export const CartContext = createContext<CartContextType>({
@@ -19,6 +20,7 @@ export const CartContext = createContext<CartContextType>({
   cartBasePrice: 0,
   cartTotalDiscount: 0,
   addProductToCart: () => {},
+  decreaseProductQuantity: () => {},
 });
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
@@ -49,11 +51,29 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setProducts((prev) => [...prev, product]);
   };
 
+  const decreaseProductQuantity = (productId: string) => {
+    setProducts((prev) =>
+      prev
+        .map((productCart) => {
+          if (productCart.id === productId) {
+            return {
+              ...productCart,
+              quantity: productCart.quantity - 1,
+            };
+          }
+
+          return productCart;
+        })
+        .filter((productCart) => productCart.quantity > 0),
+    );
+  };
+
   return (
     <CartContext.Provider
       value={{
         products,
         addProductToCart,
+        decreaseProductQuantity,
         cartTotalPrice: 0,
         cartBasePrice: 0,
         cartTotalDiscount: 0,
