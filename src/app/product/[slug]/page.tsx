@@ -4,6 +4,7 @@ import ProductImages from "./components/ProductImages";
 import ProductInfo from "./components/ProductInfo";
 import computedProductTotalPrice from "@/helpers/product";
 import ProductList from "@/components/ui/ProductList";
+import SectionTitle from "@/components/ui/SectionTitle";
 
 type ProductDetailsPageProps = {
   params: {
@@ -39,7 +40,11 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = async ({
     <div className="flex flex-col gap-8 pb-8">
       <ProductImages alt={product.name} imageUrls={product.imageUrls} />
       <ProductInfo product={computedProductTotalPrice(product)} />
-      <ProductList products={product.category.Product} />
+
+      <div>
+        <SectionTitle>Produtos Recomendados</SectionTitle>
+        <ProductList products={product.category.Product} />
+      </div>
     </div>
   );
 };
